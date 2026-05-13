@@ -1,0 +1,42 @@
+[
+  {
+    "id": "01-cover",
+    "prompt": "A magical wizard's study desk at night, glowing laptop open showing flowing constellation lines, floating documents, parchment scrolls, quill pen, stack of grimoires, soft purple and cyan magical particles rising. Dark deep purple background with starry sky through arched window. Cinematic depth of field, painterly digital illustration, ethereal violet and golden glow accents. No text, no logos, 16:9 composition."
+  },
+  {
+    "id": "02-overview",
+    "prompt": "A grand magical school building seen from below at night, gothic spires, glowing windows, surrounded by floating digital nodes and AI circuit constellations connecting like a network. Purple to deep blue gradient sky, golden window lights, cyan data streams flowing between buildings. Mystical academy ambiance. Painterly digital illustration, no text, 16:9."
+  },
+  {
+    "id": "03-transition",
+    "prompt": "Four ethereal beams of light radiating from a central glowing magical rune on dark velvet background. Each beam in a different jewel color: amethyst purple, emerald cyan, golden amber, and rose. The beams transform into birds, books, hands, and gears mid-flight. Soft particle bokeh. Painterly digital illustration, mystical fantasy, no text, 16:9."
+  },
+  {
+    "id": "04-team",
+    "prompt": "Two cloaked wizard figures from behind carefully holding up an enormous floating tome and stacks of glowing documents like Atlas holding the sky, shielding three smaller figures who walk forward lightly carrying tiny single candles. Warm protective golden light on the shielders. Deep purple night background with stars. Symbolism of bearing the burden. Painterly digital illustration, no text, 16:9."
+  },
+  {
+    "id": "05-record",
+    "prompt": "An open enchanted leather-bound journal on a dark wooden desk, four small handwritten note panels glowing softly, a vintage camera, a quill, scattered photo polaroids floating above the page like memories. Purple and amber magical motes drift in the air. Cozy intimate library setting at night. Painterly digital illustration, no text, 16:9."
+  },
+  {
+    "id": "06-keris",
+    "prompt": "A vast magical library archive at night, towering bookshelves stretching into darkness, five highlighted glowing tomes floating off the shelves bathed in warm golden light, a single shaft of moonlight from above. Purple shadows, cyan dust particles. Mystical scholarly atmosphere. Painterly digital illustration, no text, 16:9."
+  },
+  {
+    "id": "07-timeline",
+    "prompt": "A horizontal mystical timeline of glowing constellation dots connected by golden thread across a deep purple night sky, with a much brighter star in the middle marked with a small magical sigil, a calendar page partially transparent floating in the background. Cyan and amber accents. Painterly digital illustration, no text, 16:9."
+  },
+  {
+    "id": "08-web-vs-desktop",
+    "prompt": "Split composition: on the left, a single glowing speech-bubble portal floating in starry void; on the right, a wizard's workbench in a magical study with multiple open scrolls, an open enchanted laptop, file folders arranged neatly, all glowing with purple and cyan magical light. Soft golden particles. Painterly digital illustration, contrast between simple chat and rich workspace, no text, 16:9."
+  },
+  {
+    "id": "09-safety",
+    "prompt": "A glowing magical shield emblem in front of an open file folder with documents inside, protected by a circle of small runes on a dark velvet surface. A small key, a cautionary lantern, soft amber and purple light. Symbolism of safe practice and permission boundaries. Painterly digital illustration, no text, 16:9."
+  },
+  {
+    "id": "10-cert",
+    "prompt": "An elegant glowing magical certificate medallion floating in air with intricate filigree, a wax seal in the center showing a stylized AI rune, ribbons in purple and gold, surrounded by soft starlight and floating sparks. Deep purple background. Symbolism of completion and shared accomplishment. Painterly digital illustration, no text, 16:9."
+  }
+]

@@ -1,0 +1,17 @@
+# Windows
+desktop.ini
+Thumbs.db
+
+# 큰 원본 오디오 (mp3로 충분, 재생성 가능)
+*.wav
+
+# 로컬 아카이브 및 검증 자산
+narration/_v1_backup/
+narration/_v2_backup/
+_screenshots/
+_screenshots_v2/
+
+# 임시·캐시
+audio/
+*.bak
+*.tmp
