@@ -8,8 +8,11 @@ Thumbs.db
 # 로컬 아카이브 및 검증 자산
 narration/_v1_backup/
 narration/_v2_backup/
+narration/_backup_pre_v3/
 _screenshots/
 _screenshots_v2/
+_screenshots_v3/
+_capture_v3.py
 
 # 임시·캐시
 audio/
