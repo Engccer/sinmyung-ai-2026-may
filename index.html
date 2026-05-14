@@ -9,25 +9,22 @@
 <style>
 /* ===== RESET & BASE ===== */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html, body { width: 100%; height: 100%; overflow: hidden; font-family: 'Noto Sans KR', sans-serif; background: #0a0515; color: #e8e0f0; }
-
-/* ===== STAR PARTICLES ===== */
-.stars { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 0; }
-.star { position: absolute; border-radius: 50%; background: #fff; animation: twinkle var(--dur) ease-in-out infinite alternate; }
-@keyframes twinkle {
-  0% { opacity: 0.2; transform: scale(0.8); }
-  100% { opacity: 1; transform: scale(1.2); }
+html, body {
+  width: 100%; height: 100%; overflow: hidden;
+  font-family: 'Noto Sans KR', sans-serif;
+  background: #ffffff;
+  color: #1f2937;
 }
 
-/* ===== MAGICAL PARTICLES ===== */
-.magic-particles { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 1; overflow: hidden; }
-.particle { position: absolute; border-radius: 50%; opacity: 0; animation: float-up var(--dur) ease-in-out infinite; animation-delay: var(--delay); }
-@keyframes float-up {
-  0% { opacity: 0; transform: translateY(100vh) scale(0); }
-  20% { opacity: 0.8; }
-  80% { opacity: 0.6; }
-  100% { opacity: 0; transform: translateY(-10vh) scale(1); }
-}
+/* ===== COLOR TOKENS =====
+   Primary: #2563eb (blue-600)
+   Accent : #d97706 (amber-600)
+   Aux    : #0891b2 (cyan-600)
+   Warn   : #dc2626 (red-600)
+   Text   : #1f2937 / #4b5563 / #9ca3af
+   Border : #e5e7eb / #cbd5e1
+   Surface: #f9fafb / #f3f4f6
+*/
 
 /* ===== SLIDE SYSTEM ===== */
 .slide-container { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 10; }
@@ -35,10 +32,10 @@ html, body { width: 100%; height: 100%; overflow: hidden; font-family: 'Noto San
   position: absolute; top: 0; left: 0; width: 100%; height: 100%;
   display: flex; flex-direction: column; align-items: center; justify-content: center;
   padding: 4vh 6vw 8vh;
-  opacity: 0; transform: scale(0.95);
-  transition: opacity 0.6s ease, transform 0.6s ease;
+  opacity: 0; transform: scale(0.98);
+  transition: opacity 0.45s ease, transform 0.45s ease;
   pointer-events: none;
-  background: radial-gradient(ellipse at 50% 30%, #1a1035 0%, #12091f 50%, #0a0515 100%);
+  background: #ffffff;
   overflow: hidden;
 }
 .slide.active { opacity: 1; transform: scale(1); pointer-events: auto; }
@@ -46,57 +43,52 @@ html, body { width: 100%; height: 100%; overflow: hidden; font-family: 'Noto San
 /* ===== PROGRESS BAR ===== */
 .progress-bar {
   position: fixed; top: 0; left: 0; height: 3px; z-index: 100;
-  background: linear-gradient(90deg, #a78bfa, #5de6c8, #f5c842);
+  background: #2563eb;
   transition: width 0.5s ease;
 }
 
 /* ===== TYPOGRAPHY ===== */
-h1 { font-size: clamp(2rem, 5vw, 3.5rem); font-weight: 900; line-height: 1.25; text-align: center; }
-h2 { font-size: clamp(1.6rem, 3.5vw, 2.6rem); font-weight: 700; line-height: 1.3; text-align: center; margin-bottom: 2.5vh; }
-h3 { font-size: clamp(1.1rem, 2.2vw, 1.6rem); font-weight: 500; line-height: 1.4; }
-p, li { font-size: clamp(0.95rem, 1.85vw, 1.25rem); line-height: 1.65; }
+h1 { font-size: clamp(2rem, 5vw, 3.4rem); font-weight: 900; line-height: 1.25; text-align: center; color: #1f2937; }
+h2 { font-size: clamp(1.55rem, 3.4vw, 2.5rem); font-weight: 700; line-height: 1.3; text-align: center; margin-bottom: 2.5vh; color: #1f2937; }
+h3 { font-size: clamp(1.1rem, 2.2vw, 1.6rem); font-weight: 500; line-height: 1.4; color: #1f2937; }
+p, li { font-size: clamp(0.95rem, 1.85vw, 1.25rem); line-height: 1.65; color: #1f2937; }
 
 /* ===== COLOR ACCENTS ===== */
-.gold { color: #f5c842; }
-.cyan { color: #5de6c8; }
-.purple { color: #a78bfa; }
-.coral { color: #ff6b8a; }
-.dim { color: rgba(232, 224, 240, 0.6); }
-.dim2 { color: rgba(232, 224, 240, 0.45); }
+.primary { color: #2563eb; }
+.accent { color: #d97706; }
+.aux { color: #0891b2; }
+.warn { color: #dc2626; }
+.dim { color: #6b7280; }
+.dim2 { color: #9ca3af; }
 
-/* ===== GLASS CARD ===== */
-.glass {
-  background: rgba(26, 16, 53, 0.6);
-  backdrop-filter: blur(16px);
-  border: 1px solid rgba(167, 139, 250, 0.2);
-  border-radius: 16px;
-  padding: 2.6vh 2.5vw;
+/* ===== CARD ===== */
+.card {
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 2.4vh 2.2vw;
 }
-.glass.gold-border { border-color: rgba(245, 200, 66, 0.3); }
-.glass.cyan-border { border-color: rgba(93, 230, 200, 0.3); }
-.glass.coral-border { border-color: rgba(255, 107, 138, 0.3); }
+.card.primary-border { border-color: #93c5fd; border-left: 4px solid #2563eb; }
+.card.accent-border { border-color: #fcd34d; border-left: 4px solid #d97706; }
+.card.aux-border { border-color: #67e8f9; border-left: 4px solid #0891b2; }
+.card.warn-border { border-color: #fca5a5; border-left: 4px solid #dc2626; }
 
 /* ===== BADGE ===== */
 .badge {
-  display: inline-block; padding: 0.3em 0.95em; border-radius: 999px;
+  display: inline-block; padding: 0.3em 0.95em; border-radius: 6px;
   font-size: clamp(0.78rem, 1.3vw, 0.95rem); font-weight: 500;
-  background: rgba(167, 139, 250, 0.2); color: #a78bfa;
-  border: 1px solid rgba(167, 139, 250, 0.3);
+  background: #eff6ff; color: #2563eb; border: 1px solid #bfdbfe;
 }
-.badge.gold-badge { background: rgba(245,200,66,0.15); color: #f5c842; border-color: rgba(245,200,66,0.3); }
-.badge.cyan-badge { background: rgba(93,230,200,0.15); color: #5de6c8; border-color: rgba(93,230,200,0.3); }
-
-/* ===== GLOW TEXT ===== */
-.glow { text-shadow: 0 0 20px rgba(167, 139, 250, 0.5), 0 0 40px rgba(167, 139, 250, 0.2); }
-.glow-gold { text-shadow: 0 0 20px rgba(245, 200, 66, 0.5), 0 0 40px rgba(245, 200, 66, 0.2); }
-.glow-cyan { text-shadow: 0 0 20px rgba(93, 230, 200, 0.5), 0 0 40px rgba(93, 230, 200, 0.2); }
+.badge.accent-badge { background: #fffbeb; color: #d97706; border-color: #fde68a; }
+.badge.aux-badge { background: #ecfeff; color: #0891b2; border-color: #a5f3fc; }
 
 /* ===== SLIDE IMAGE ===== */
 .slide-img {
   max-width: min(46vw, 380px); max-height: 32vh;
-  border-radius: 16px; margin: 1.5vh 0;
-  box-shadow: 0 0 30px rgba(167,139,250,0.3);
+  border-radius: 12px; margin: 1.5vh 0;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.08);
   object-fit: contain;
+  background: #f9fafb;
 }
 .slide-img.small { max-width: min(32vw, 260px); max-height: 22vh; }
 
@@ -113,20 +105,17 @@ p, li { font-size: clamp(0.95rem, 1.85vw, 1.25rem); line-height: 1.65; }
 .timeline { display: flex; flex-direction: column; gap: 1.1vh; width: 100%; max-width: 880px; }
 .timeline-item {
   display: flex; align-items: center; gap: 1.2vw;
-  opacity: 0; transform: translateX(-20px);
-  transition: opacity 0.4s ease, transform 0.4s ease;
   padding: 0.4vh 0;
 }
-.timeline-item.visible { opacity: 1; transform: translateX(0); }
-.timeline-dot { width: 12px; height: 12px; border-radius: 50%; flex-shrink: 0; background: #a78bfa; box-shadow: 0 0 10px rgba(167,139,250,0.5); }
-.timeline-dot.current { background: #f5c842; box-shadow: 0 0 18px rgba(245,200,66,0.75); width: 16px; height: 16px; }
-.timeline-dot.done { background: rgba(167,139,250,0.4); box-shadow: none; }
+.timeline-dot { width: 12px; height: 12px; border-radius: 50%; flex-shrink: 0; background: #2563eb; }
+.timeline-dot.current { background: #d97706; width: 16px; height: 16px; }
+.timeline-dot.done { background: #cbd5e1; }
 .timeline-content { font-size: clamp(0.85rem, 1.55vw, 1.1rem); }
-.timeline-date { color: #a78bfa; font-weight: 500; min-width: 92px; display: inline-block; }
-.timeline-title { color: #f5c842; font-weight: 500; }
-.timeline-desc { color: rgba(232,224,240,0.6); margin-left: 0.5em; font-size: 0.92em; }
-.timeline-item.current .timeline-title { color: #f5c842; font-weight: 700; }
-.timeline-item.current .timeline-date { color: #f5c842; }
+.timeline-date { color: #2563eb; font-weight: 600; min-width: 92px; display: inline-block; }
+.timeline-title { color: #1f2937; font-weight: 600; }
+.timeline-desc { color: #6b7280; margin-left: 0.5em; font-size: 0.92em; }
+.timeline-item.current .timeline-title { color: #d97706; font-weight: 700; }
+.timeline-item.current .timeline-date { color: #d97706; }
 
 /* ===== GRID LAYOUTS ===== */
 .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 2vw; width: 100%; max-width: 1000px; }
@@ -142,27 +131,20 @@ p, li { font-size: clamp(0.95rem, 1.85vw, 1.25rem); line-height: 1.65; }
   padding: 0.4vh 0 0.4vh 1.3em;
   position: relative;
   font-size: clamp(0.9rem, 1.55vw, 1.1rem);
+  color: #1f2937;
 }
 .bullet-list li::before {
-  content: '◆'; position: absolute; left: 0; color: #a78bfa;
-  font-size: 0.75em; top: 0.7em;
+  content: '•'; position: absolute; left: 0.2em; color: #2563eb;
+  font-size: 1.2em; top: 0.05em;
 }
-.bullet-list.gold li::before { color: #f5c842; }
-.bullet-list.cyan li::before { color: #5de6c8; }
-
-.checklist { list-style: none; }
-.checklist li { padding: 0.85vh 0; display: flex; align-items: flex-start; gap: 0.8em; font-size: clamp(0.92rem, 1.7vw, 1.15rem); }
-.checklist li::before {
-  content: ''; display: inline-block; width: 1.1em; height: 1.1em;
-  border: 2px solid #a78bfa; border-radius: 4px; flex-shrink: 0; margin-top: 0.25em;
-}
-.checklist li.checked::before { background: #a78bfa; box-shadow: 0 0 8px rgba(167,139,250,0.4); }
+.bullet-list.accent li::before { color: #d97706; }
+.bullet-list.aux li::before { color: #0891b2; }
 
 /* ===== QUOTE ===== */
 .quote {
   font-style: italic; font-size: clamp(1rem, 2vw, 1.35rem);
-  border-left: 3px solid #f5c842; padding-left: 1.5em;
-  color: rgba(232,224,240,0.85); max-width: 700px;
+  border-left: 3px solid #d97706; padding-left: 1.5em;
+  color: #4b5563; max-width: 700px;
 }
 
 /* ===== KEY CARDS ===== */
@@ -173,64 +155,65 @@ p, li { font-size: clamp(0.95rem, 1.85vw, 1.25rem); line-height: 1.65; }
 }
 .key-card .num {
   display: inline-block; width: 2em; height: 2em; line-height: 2em;
-  border-radius: 50%; background: rgba(167,139,250,0.18);
-  border: 1px solid rgba(167,139,250,0.4); color: #a78bfa;
+  border-radius: 50%; background: #eff6ff;
+  border: 1px solid #bfdbfe; color: #2563eb;
   font-weight: 700; font-size: 1.1rem; margin-bottom: 1vh;
 }
-.key-card.gold .num { background: rgba(245,200,66,0.16); border-color: rgba(245,200,66,0.4); color: #f5c842; }
-.key-card.cyan .num { background: rgba(93,230,200,0.16); border-color: rgba(93,230,200,0.4); color: #5de6c8; }
-.key-card.coral .num { background: rgba(255,107,138,0.16); border-color: rgba(255,107,138,0.4); color: #ff6b8a; }
-.key-card h3 { font-size: clamp(1rem, 1.9vw, 1.3rem); margin-bottom: 0.9vh; color: #e8e0f0; font-weight: 700; }
-.key-card p { font-size: clamp(0.83rem, 1.4vw, 1rem); color: rgba(232,224,240,0.7); line-height: 1.55; }
+.key-card.accent .num { background: #fffbeb; border-color: #fde68a; color: #d97706; }
+.key-card.aux .num { background: #ecfeff; border-color: #a5f3fc; color: #0891b2; }
+.key-card.warn .num { background: #fef2f2; border-color: #fca5a5; color: #dc2626; }
+.key-card h3 { font-size: clamp(1rem, 1.9vw, 1.3rem); margin-bottom: 0.9vh; color: #1f2937; font-weight: 700; }
+.key-card p { font-size: clamp(0.83rem, 1.4vw, 1rem); color: #4b5563; line-height: 1.55; }
 
 /* ===== STATS ===== */
 .stats { display: grid; grid-template-columns: repeat(5, 1fr); gap: 1.2vw; width: 100%; max-width: 1100px; }
 @media (max-width: 900px) { .stats { grid-template-columns: 1fr 1fr; } }
 .stat {
   padding: 2vh 1vw; text-align: center;
-  background: rgba(26,16,53,0.5);
-  border: 1px solid rgba(167,139,250,0.2);
+  background: #f9fafb;
+  border: 1px solid #e5e7eb;
   border-radius: 12px;
 }
-.stat-num { font-size: clamp(1.4rem, 3vw, 2rem); font-weight: 900; color: #f5c842; line-height: 1; margin-bottom: 0.6vh; }
-.stat-label { font-size: clamp(0.78rem, 1.3vw, 0.95rem); color: rgba(232,224,240,0.65); line-height: 1.4; }
+.stat-num { font-size: clamp(1.4rem, 3vw, 2rem); font-weight: 900; color: #2563eb; line-height: 1; margin-bottom: 0.6vh; }
+.stat-label { font-size: clamp(0.78rem, 1.3vw, 0.95rem); color: #4b5563; line-height: 1.4; }
 
 /* ===== TABLES ===== */
 .fancy-table {
-  width: 100%; max-width: 980px; border-collapse: separate; border-spacing: 0 0.6vh;
+  width: 100%; max-width: 980px; border-collapse: separate; border-spacing: 0;
   font-size: clamp(0.88rem, 1.55vw, 1.05rem);
+  border: 1px solid #e5e7eb; border-radius: 12px; overflow: hidden;
 }
-.fancy-table th, .fancy-table td { padding: 1.2vh 1vw; text-align: left; vertical-align: top; }
-.fancy-table th { color: #a78bfa; font-weight: 700; border-bottom: 1px solid rgba(167,139,250,0.3); }
-.fancy-table td { background: rgba(26,16,53,0.45); border-top: 1px solid rgba(167,139,250,0.08); border-bottom: 1px solid rgba(167,139,250,0.08); }
-.fancy-table tr td:first-child { border-left: 1px solid rgba(167,139,250,0.1); border-radius: 10px 0 0 10px; color: #f5c842; font-weight: 500; }
-.fancy-table tr td:last-child { border-right: 1px solid rgba(167,139,250,0.1); border-radius: 0 10px 10px 0; }
-.fancy-table tr:hover td { background: rgba(26,16,53,0.65); }
+.fancy-table th, .fancy-table td { padding: 1.1vh 1vw; text-align: left; vertical-align: top; }
+.fancy-table th { color: #1f2937; font-weight: 700; background: #f3f4f6; border-bottom: 1px solid #e5e7eb; }
+.fancy-table td { background: #ffffff; border-top: 1px solid #f3f4f6; }
+.fancy-table tr:first-child td { border-top: 0; }
+.fancy-table tr td:first-child { color: #2563eb; font-weight: 600; }
+.fancy-table tr:hover td { background: #f9fafb; }
 
 /* ===== MINI GRID CARD ===== */
 .mini-card {
   padding: 1.6vh 1.2vw;
-  background: rgba(26,16,53,0.55);
-  border: 1px solid rgba(167,139,250,0.18);
+  background: #f9fafb;
+  border: 1px solid #e5e7eb;
   border-radius: 12px;
 }
-.mini-card b { display: block; color: #f5c842; font-size: clamp(0.92rem, 1.55vw, 1.1rem); margin-bottom: 0.5vh; font-weight: 700; }
-.mini-card span { display: block; color: rgba(232,224,240,0.7); font-size: clamp(0.78rem, 1.35vw, 0.98rem); line-height: 1.5; }
+.mini-card b { display: block; color: #2563eb; font-size: clamp(0.92rem, 1.55vw, 1.1rem); margin-bottom: 0.5vh; font-weight: 700; }
+.mini-card span { display: block; color: #4b5563; font-size: clamp(0.78rem, 1.35vw, 0.98rem); line-height: 1.5; }
 
 /* ===== STEP CARD ===== */
 .step-card {
   padding: 1.4vh 1vw;
-  background: rgba(26,16,53,0.55);
-  border: 1px solid rgba(93,230,200,0.2);
+  background: #f9fafb;
+  border: 1px solid #e5e7eb;
   border-radius: 12px;
   text-align: center;
 }
 .step-num {
   display: inline-block; width: 1.8em; height: 1.8em; line-height: 1.8em;
-  border-radius: 50%; background: rgba(93,230,200,0.18);
-  color: #5de6c8; font-weight: 700; font-size: 1rem; margin-bottom: 0.6vh;
+  border-radius: 50%; background: #ecfeff;
+  color: #0891b2; font-weight: 700; font-size: 1rem; margin-bottom: 0.6vh;
 }
-.step-card p { font-size: clamp(0.82rem, 1.4vw, 1rem); color: rgba(232,224,240,0.8); line-height: 1.45; }
+.step-card p { font-size: clamp(0.82rem, 1.4vw, 1rem); color: #4b5563; line-height: 1.45; }
 
 /* ===== HERO META ===== */
 .hero-meta {
@@ -239,14 +222,14 @@ p, li { font-size: clamp(0.95rem, 1.85vw, 1.25rem); line-height: 1.65; }
 }
 .hero-meta-row {
   display: grid; grid-template-columns: 5em 1fr; gap: 1em; align-items: baseline;
-  padding-bottom: 1vh; border-bottom: 1px solid rgba(167,139,250,0.15);
+  padding-bottom: 1vh; border-bottom: 1px solid #e5e7eb;
 }
 .hero-meta-row:last-child { border-bottom: 0; }
-.hero-meta-row b { color: #a78bfa; font-weight: 700; }
-.hero-meta-row span { color: rgba(232,224,240,0.85); }
+.hero-meta-row b { color: #2563eb; font-weight: 700; }
+.hero-meta-row span { color: #1f2937; }
 
 /* ===== DIVIDER ===== */
-.divider { width: 90px; height: 3px; margin: 1.6vh auto; background: linear-gradient(90deg, #a78bfa, #5de6c8, #f5c842); border-radius: 2px; }
+.divider { width: 90px; height: 3px; margin: 1.6vh auto; background: #2563eb; border-radius: 2px; }
 
 /* ===== TAG ROW ===== */
 .tag-row { display: flex; gap: 0.7em; flex-wrap: wrap; justify-content: center; margin-top: 1.5vh; }
@@ -254,42 +237,41 @@ p, li { font-size: clamp(0.95rem, 1.85vw, 1.25rem); line-height: 1.65; }
 /* ===== AUDIO CONTROL ===== */
 .audio-toggle {
   position: fixed; top: 2vh; right: 3vw; z-index: 200;
-  background: rgba(26,16,53,0.8); border: 1px solid rgba(167,139,250,0.3);
+  background: #ffffff; border: 1px solid #e5e7eb;
   border-radius: 10px; padding: 0.4em 0.8em;
-  color: #a78bfa; font-size: 1.2rem; cursor: pointer;
-  transition: background 0.2s;
+  color: #4b5563; font-size: 1.2rem; cursor: pointer;
+  transition: background 0.2s, border-color 0.2s;
 }
-.audio-toggle:hover { background: rgba(167,139,250,0.2); }
-.audio-toggle:focus-visible { outline: 2px solid #a78bfa; outline-offset: 2px; }
+.audio-toggle:hover { background: #f3f4f6; border-color: #cbd5e1; }
+.audio-toggle:focus-visible { outline: 2px solid #2563eb; outline-offset: 2px; }
 
 /* ===== NAVIGATION BAR ===== */
 .nav-bar {
   position: fixed; bottom: 0; left: 0; right: 0;
   display: flex; justify-content: space-between; align-items: center;
   padding: 0.7rem 1.6rem;
-  background: rgba(10, 5, 21, 0.95);
-  backdrop-filter: blur(10px);
-  border-top: 1px solid rgba(167, 139, 250, 0.15);
+  background: rgba(255,255,255,0.96);
+  border-top: 1px solid #e5e7eb;
   z-index: 100;
 }
 .nav-btn {
-  background: rgba(167, 139, 250, 0.1);
-  border: 1px solid rgba(167, 139, 250, 0.25);
-  color: #e8e0f0;
+  background: #ffffff;
+  border: 1px solid #cbd5e1;
+  color: #1f2937;
   padding: 0.55rem 1.4rem;
-  border-radius: 0.6rem;
+  border-radius: 0.5rem;
   font-family: 'Noto Sans KR', sans-serif;
   font-size: 0.9rem;
   cursor: pointer;
   transition: background 0.2s, transform 0.1s, border-color 0.2s;
   outline-offset: 3px;
 }
-.nav-btn:hover { background: rgba(167, 139, 250, 0.2); border-color: rgba(167, 139, 250, 0.4); }
+.nav-btn:hover { background: #f3f4f6; border-color: #94a3b8; }
 .nav-btn:active { transform: scale(0.97); }
-.nav-btn:focus-visible { outline: 2px solid #a78bfa; }
-.nav-btn:disabled { opacity: 0.35; cursor: not-allowed; }
-.nav-btn:disabled:hover { background: rgba(167, 139, 250, 0.1); }
-.nav-counter { font-size: 0.92rem; color: rgba(232,224,240,0.55); font-variant-numeric: tabular-nums; }
+.nav-btn:focus-visible { outline: 2px solid #2563eb; }
+.nav-btn:disabled { opacity: 0.4; cursor: not-allowed; }
+.nav-btn:disabled:hover { background: #ffffff; }
+.nav-counter { font-size: 0.92rem; color: #6b7280; font-variant-numeric: tabular-nums; }
 
 /* ===== SR ONLY ===== */
 .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); border: 0; white-space: nowrap; }
@@ -300,31 +282,26 @@ p, li { font-size: clamp(0.95rem, 1.85vw, 1.25rem); line-height: 1.65; }
 /* ===== HELPER STRONG ===== */
 .callout {
   font-size: clamp(0.95rem, 1.7vw, 1.2rem); line-height: 1.55;
-  color: #e8e0f0;
-  background: rgba(167,139,250,0.08);
-  border-left: 3px solid #a78bfa;
+  color: #1f2937;
+  background: #eff6ff;
+  border-left: 3px solid #2563eb;
   padding: 1.2vh 1.4vw;
   border-radius: 6px;
   max-width: 880px;
   text-align: left;
 }
-.callout.gold { background: rgba(245,200,66,0.08); border-left-color: #f5c842; }
-.callout.cyan { background: rgba(93,230,200,0.08); border-left-color: #5de6c8; }
+.callout.accent { background: #fffbeb; border-left-color: #d97706; }
+.callout.aux { background: #ecfeff; border-left-color: #0891b2; }
 
 /* ===== HALF SCREEN HERO IMAGE ===== */
 .hero-img-wrap {
   display: flex; justify-content: center; align-items: center;
-  filter: drop-shadow(0 0 30px rgba(167,139,250,0.25));
 }
-.hero-img-wrap img { width: 100%; max-width: 460px; border-radius: 18px; }
+.hero-img-wrap img { width: 100%; max-width: 460px; border-radius: 12px; }
 </style>
 </head>
 <body>
 
-<!-- Stars background -->
-<div class="stars" id="stars" aria-hidden="true"></div>
-<!-- Floating magic particles -->
-<div class="magic-particles" id="particles" aria-hidden="true"></div>
 <!-- Progress bar -->
 <div class="progress-bar" id="progressBar" role="progressbar" aria-label="프레젠테이션 진행률" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"></div>
 <!-- Audio toggle -->
@@ -338,26 +315,26 @@ p, li { font-size: clamp(0.95rem, 1.85vw, 1.25rem); line-height: 1.65; }
   <div class="content-block">
     <div class="hero-row">
       <div style="text-align:left;">
-        <span class="badge gold-badge">AI 바이브 교학공 · 5월 회차</span>
-        <h1 class="glow" style="text-align:left; margin-top:2vh;">
-          <span class="purple">선도학교 사업 안내</span>와<br>
-          <span class="gold glow-gold">업무 자동화 도구</span>
+        <span class="badge accent-badge">AI 바이브 교학공 · 5월 회차</span>
+        <h1 style="text-align:left; margin-top:2vh;">
+          <span class="primary">선도학교 사업 안내</span>와<br>
+          <span class="accent">업무 자동화 도구</span>
         </h1>
-        <div class="divider" style="margin:2vh 0;"></div>
+        <div class="divider" style="margin:2vh 0 2vh 0;"></div>
         <p class="dim" style="font-size:clamp(0.92rem,1.6vw,1.1rem);">
           2026 AI·디지털 활용 선도학교
         </p>
       </div>
       <div class="hero-img-wrap">
-        <img class="hero-cover-img" src="images/01-cover.png" alt="마법 책상 위에 펼쳐진 노트북과 자료, 보라빛 입자가 떠 있는 일러스트">
+        <img class="hero-cover-img" src="images/01-cover.png" alt="표지 이미지">
       </div>
     </div>
-    <div class="glass" style="max-width:780px; width:100%; margin-top:2.4vh;">
+    <div class="card" style="max-width:780px; width:100%; margin-top:2.4vh;">
       <div class="hero-meta">
         <div class="hero-meta-row"><b>일시</b><span>2026년 5월 20일(수) 15:30</span></div>
         <div class="hero-meta-row"><b>장소</b><span>신명중학교 영어교과실(후관)</span></div>
-        <div class="hero-meta-row"><b>대상</b><span>AI 바이브 교학공 참여 교원 14명</span></div>
-        <div class="hero-meta-row"><b>운영팀</b><span>왕선희(생활상담부장·리드 교사) · 김헌용(영어과·교학공 운영)</span></div>
+        <div class="hero-meta-row"><b>대상</b><span>AI 바이브 교학공 참여 교원 16명</span></div>
+        <div class="hero-meta-row"><b>운영팀</b><span>왕선희 · 김헌용</span></div>
       </div>
     </div>
   </div>
@@ -365,27 +342,27 @@ p, li { font-size: clamp(0.95rem, 1.85vw, 1.25rem); line-height: 1.65; }
 
 <!-- SLIDE 2: Agenda (2 tracks) -->
 <section class="slide" id="slide-2" data-sfx="scroll-unroll" aria-label="슬라이드 2: 오늘 다룰 두 갈래">
-  <h2 class="glow">오늘 다룰 <span class="gold">두 갈래</span></h2>
+  <h2>오늘 다룰 <span class="accent">두 갈래</span></h2>
   <div class="grid-2" style="max-width:1080px;">
-    <div class="glass" style="border-color:rgba(167,139,250,0.4);">
+    <div class="card primary-border">
       <span class="badge" style="margin-bottom:1.2vh;">1부</span>
-      <h3 class="purple" style="font-size:clamp(1.2rem,2.2vw,1.55rem); font-weight:700; margin:1vh 0;">선도학교 사업 안내</h3>
+      <h3 class="primary" style="font-size:clamp(1.2rem,2.2vw,1.55rem); font-weight:700; margin:1vh 0;">선도학교 사업 안내</h3>
       <ul class="bullet-list" style="font-size:clamp(0.9rem,1.55vw,1.08rem);">
-        <li>사업 정의와 4가지 전환임</li>
-        <li>필수과제 세 가지와 선택과제임</li>
-        <li>필수 참여 사항과 외부 일정임</li>
-        <li>예산 편성과 집행 유의사항임</li>
-        <li>신명중 적용과 교학공의 역할임</li>
+        <li>사업 정의와 4가지 전환</li>
+        <li>필수과제 세 가지와 선택과제</li>
+        <li>필수 참여 사항과 외부 일정</li>
+        <li>예산 편성과 집행 유의사항</li>
+        <li>신명중 적용과 교학공의 역할</li>
       </ul>
     </div>
-    <div class="glass cyan-border">
-      <span class="badge cyan-badge" style="margin-bottom:1.2vh;">2부</span>
-      <h3 class="cyan" style="font-size:clamp(1.2rem,2.2vw,1.55rem); font-weight:700; margin:1vh 0;">AI 행정 업무 자동화 도구</h3>
-      <ul class="bullet-list cyan" style="font-size:clamp(0.9rem,1.55vw,1.08rem);">
-        <li>지난 4월 모임 복기임</li>
-        <li>데스크톱 앱의 강점 세 가지임</li>
-        <li>Claude 데스크톱과 Cowork임</li>
-        <li>Codex 데스크톱임</li>
+    <div class="card aux-border">
+      <span class="badge aux-badge" style="margin-bottom:1.2vh;">2부</span>
+      <h3 class="aux" style="font-size:clamp(1.2rem,2.2vw,1.55rem); font-weight:700; margin:1vh 0;">AI 행정 업무 자동화 도구</h3>
+      <ul class="bullet-list aux" style="font-size:clamp(0.9rem,1.55vw,1.08rem);">
+        <li>지난 4월 모임 복기</li>
+        <li>데스크톱 앱의 강점 세 가지</li>
+        <li>Claude 데스크톱과 Cowork</li>
+        <li>Codex 데스크톱</li>
       </ul>
     </div>
   </div>
@@ -393,34 +370,34 @@ p, li { font-size: clamp(0.95rem, 1.85vw, 1.25rem); line-height: 1.65; }
 
 <!-- SLIDE 3: 선도학교란? -->
 <section class="slide" id="slide-3" data-sfx="scroll-unroll" aria-label="슬라이드 3: 선도학교란">
-  <h2 class="glow">선도학교란 <span class="gold">무엇인가</span></h2>
+  <h2>선도학교란 <span class="accent">무엇인가</span></h2>
   <div class="callout" style="margin-bottom:2vh; max-width:980px; text-align:center;">
-    AI·디지털 기반 교육자료를 활용한 <span class="gold">교수·학습·평가의 전환</span>을 통해 학생의 성장을 지원하고, 의미 있는 상호작용으로 <span class="cyan">학교의 변화</span>를 만들어 가는 학교입니다.
+    AI·디지털 기반 교육자료를 활용한 <span class="accent">교수·학습·평가의 전환</span>을 통해 학생의 성장을 지원하고, 의미 있는 상호작용으로 <span class="aux">학교의 변화</span>를 만들어 가는 학교입니다.
   </div>
   <div class="grid-4" style="max-width:1180px;">
-    <div class="mini-card"><b>학생 맞춤 성장</b><span>데이터 기반 맞춤 학습 지원과 핵심 역량 함양임</span></div>
-    <div class="mini-card"><b>수업 혁신</b><span>AI 코스웨어 등 에듀테크로 교실 수업의 구조 변화임</span></div>
-    <div class="mini-card"><b>공동체 전문성</b><span>교원학습공동체 중심 협력 연구로 교사 역량 강화임</span></div>
-    <div class="mini-card"><b>학교문화 개선</b><span>디지털 기반 소통·협업이 일상화된 미래형 학교문화임</span></div>
+    <div class="mini-card"><b>학생 맞춤 성장</b><span>데이터 기반 맞춤 학습 지원과 핵심 역량 함양</span></div>
+    <div class="mini-card"><b>수업 혁신</b><span>AI 코스웨어 등 에듀테크로 교실 수업의 구조 변화</span></div>
+    <div class="mini-card"><b>공동체 전문성</b><span>교원학습공동체 중심 협력 연구로 교사 역량 강화</span></div>
+    <div class="mini-card"><b>학교문화 개선</b><span>디지털 기반 소통·협업이 일상화된 미래형 학교문화</span></div>
   </div>
   <div class="tag-row" style="margin-top:2.2vh;">
     <span class="badge">운영 기간 · 2026.3.~12.</span>
-    <span class="badge cyan-badge">서울 190교 참여</span>
-    <span class="badge gold-badge">교육부 → 서울시교육청 → 강동송파교육지원청</span>
+    <span class="badge aux-badge">서울 190교 참여</span>
+    <span class="badge accent-badge">교육부 → 서울시교육청 → 강동송파교육지원청</span>
   </div>
 </section>
 
 <!-- SLIDE 4: Four Transitions -->
 <section class="slide" id="slide-4" data-sfx="spell-cast" aria-label="슬라이드 4: 4가지 전환">
-  <h2 class="glow-gold">사업이 요구하는 <span class="gold">4가지 전환</span></h2>
+  <h2>사업이 요구하는 <span class="accent">4가지 전환</span></h2>
   <div class="hero-row" style="max-width:1180px;">
-    <div class="hero-img-wrap"><img src="images/03-transition.png" alt="네 갈래로 뻗어 나가는 마법 빛줄기 일러스트" class="slide-img" style="max-width:380px; max-height:38vh;"></div>
+    <div class="hero-img-wrap"><img src="images/03-transition.png" alt="4가지 전환을 나타내는 이미지" class="slide-img" style="max-width:380px; max-height:38vh;"></div>
     <table class="fancy-table">
       <thead><tr><th style="width:6em;">전환</th><th>정책 언어</th><th>학교 운영의 실제 의미</th></tr></thead>
       <tbody>
         <tr><td>배움전환</td><td>AI·디지털 기반 맞춤 교수·학습·평가</td><td>수업·평가에서 학생별 차이를 도구로 다룸</td></tr>
         <tr><td>관계전환</td><td>교사-학생, 학생-학생, 학생-도구 상호작용</td><td>학생 반응·산출물을 더 자주 살핌</td></tr>
-        <tr><td>도구전환</td><td>AI·디지털 도구의 창의적 결합</td><td>단일 도구가 아닌 흐름에 맞는 조합임</td></tr>
+        <tr><td>도구전환</td><td>AI·디지털 도구의 창의적 결합</td><td>단일 도구가 아닌 흐름에 맞는 도구 조합</td></tr>
         <tr><td>인식전환</td><td>실천 연구와 학교 안팎의 공유</td><td>사례를 남기고 동료·외부와 나눔</td></tr>
       </tbody>
     </table>
@@ -432,30 +409,30 @@ p, li { font-size: clamp(0.95rem, 1.85vw, 1.25rem); line-height: 1.65; }
 
 <!-- SLIDE 5: 운영 과제 (필수 3 + 선택 1) -->
 <section class="slide" id="slide-5" data-sfx="spell-cast" aria-label="슬라이드 5: 운영 과제">
-  <h2 class="glow">운영 과제 — <span class="gold">필수 셋</span>과 <span class="cyan">선택 하나</span></h2>
+  <h2>운영 과제 — <span class="accent">필수 셋</span>과 <span class="aux">선택 하나</span></h2>
   <div class="key-cards" style="margin-top:1vh;">
-    <div class="glass key-card" style="border-color:rgba(167,139,250,0.4);">
+    <div class="card key-card">
       <span class="num">1</span>
       <h3>배움전환</h3>
-      <p>교수·학습·평가 혁신 사례 개발임</p>
+      <p>교수·학습·평가 혁신 사례 개발</p>
     </div>
-    <div class="glass key-card gold">
+    <div class="card key-card accent">
       <span class="num">2</span>
       <h3>관계전환</h3>
-      <p>깊이 있는 상호작용 사례 개발임</p>
+      <p>깊이 있는 상호작용 사례 개발</p>
     </div>
-    <div class="glass key-card cyan">
+    <div class="card key-card aux">
       <span class="num">3</span>
       <h3>인식전환</h3>
-      <p>공동연구·실행·확산임</p>
+      <p>공동연구·실행·확산</p>
     </div>
-    <div class="glass key-card coral">
-      <span class="num" style="background:rgba(255,107,138,0.16); border-color:rgba(255,107,138,0.4); color:#ff6b8a;">+</span>
+    <div class="card key-card warn">
+      <span class="num">+</span>
       <h3>선택과제</h3>
-      <p>도구전환 또는 학교 자율 과제임</p>
+      <p>도구전환 또는 학교 자율 과제</p>
     </div>
   </div>
-  <div class="callout gold" style="margin-top:2vh; max-width:980px;">
+  <div class="callout accent" style="margin-top:2vh; max-width:980px;">
     공통 산출물: 수업지도안, 워크시트, 학생 활동 결과물, 교육적 효과성 증빙 자료입니다.
   </div>
 </section>
@@ -463,56 +440,56 @@ p, li { font-size: clamp(0.95rem, 1.85vw, 1.25rem); line-height: 1.65; }
 <!-- SLIDE 6: 필수과제 ① 배움전환 -->
 <section class="slide" id="slide-6" data-sfx="spell-cast" aria-label="슬라이드 6: 필수과제 1 배움전환">
   <span class="badge" style="margin-bottom:1.2vh;">필수과제 1</span>
-  <h2 class="glow"><span class="purple">배움전환</span> — 교수·학습·평가 혁신</h2>
+  <h2><span class="primary">배움전환</span> — 교수·학습·평가 혁신</h2>
   <p class="dim" style="text-align:center; max-width:920px; margin-bottom:1.6vh;">
     AI·디지털 기반 교육자료를 활용해 학생 맞춤형 수업·평가 모델을 개발하고, 깊이 있는 수업을 실천하는 일입니다.
   </p>
   <div class="grid-2" style="max-width:1080px;">
-    <div class="glass">
-      <h3 class="purple" style="font-weight:700; margin-bottom:0.8vh;">학생 맞춤 혁신</h3>
+    <div class="card primary-border">
+      <h3 class="primary" style="font-weight:700; margin-bottom:0.8vh;">학생 맞춤 혁신</h3>
       <p style="font-size:0.96em;">데이터 분석을 토대로 수준별·흥미별 수업 모델을 개발함</p>
     </div>
-    <div class="glass gold-border">
-      <h3 class="gold" style="font-weight:700; margin-bottom:0.8vh;">역량 중심 설계</h3>
-      <p style="font-size:0.96em;">AI·디지털 리터러시 등 미래 역량을 함양하는 수업 설계임</p>
+    <div class="card accent-border">
+      <h3 class="accent" style="font-weight:700; margin-bottom:0.8vh;">역량 중심 설계</h3>
+      <p style="font-size:0.96em;">AI·디지털 리터러시 등 미래 역량을 함양하는 수업 설계</p>
     </div>
-    <div class="glass cyan-border">
-      <h3 class="cyan" style="font-weight:700; margin-bottom:0.8vh;">가이드북 활용</h3>
+    <div class="card aux-border">
+      <h3 class="aux" style="font-weight:700; margin-bottom:0.8vh;">가이드북 활용</h3>
       <p style="font-size:0.96em;">「AI·디지털 기반 수업 실천 가이드북」을 단계별로 연계함</p>
     </div>
-    <div class="glass">
-      <h3 style="color:#ff6b8a; font-weight:700; margin-bottom:0.8vh;">사례 산출물</h3>
-      <p style="font-size:0.96em;">수업지도안·워크시트·학생 활동 결과·효과성 증빙임</p>
+    <div class="card warn-border">
+      <h3 class="warn" style="font-weight:700; margin-bottom:0.8vh;">사례 산출물</h3>
+      <p style="font-size:0.96em;">수업지도안·워크시트·학생 활동 결과·효과성 증빙</p>
     </div>
   </div>
 </section>
 
 <!-- SLIDE 7: 필수과제 ② 관계전환 -->
 <section class="slide" id="slide-7" data-sfx="spell-cast" aria-label="슬라이드 7: 필수과제 2 관계전환">
-  <span class="badge gold-badge" style="margin-bottom:1.2vh;">필수과제 2</span>
-  <h2 class="glow"><span class="gold">관계전환</span> — 깊이 있는 상호작용</h2>
+  <span class="badge accent-badge" style="margin-bottom:1.2vh;">필수과제 2</span>
+  <h2><span class="accent">관계전환</span> — 깊이 있는 상호작용</h2>
   <p class="dim" style="text-align:center; max-width:920px; margin-bottom:1.6vh;">
     AI·디지털을 매개로 교사·학생·도구 사이의 질 높은 상호작용을 설계하고, 그 효과를 검증하는 사례를 발굴합니다.
   </p>
   <div class="grid-3" style="max-width:1180px;">
-    <div class="glass" style="border-color:rgba(167,139,250,0.4);">
-      <h3 class="purple" style="font-weight:700; margin-bottom:0.8vh;">교사 ↔ 학생</h3>
+    <div class="card primary-border">
+      <h3 class="primary" style="font-weight:700; margin-bottom:0.8vh;">교사 ↔ 학생</h3>
       <p style="font-size:0.95em;">데이터 기반 맞춤 피드백과 정서적 지원·상담을 강화함</p>
-      <div style="margin-top:1vh; padding:0.7vh 0.9vw; background:rgba(167,139,250,0.1); border-radius:8px; font-size:0.86em; color:#a78bfa; font-weight:600;">
+      <div style="margin-top:1vh; padding:0.6vh 0.9vw; background:#eff6ff; border-radius:6px; font-size:0.86em; color:#2563eb; font-weight:600;">
         학습 대시보드 활용 상담
       </div>
     </div>
-    <div class="glass gold-border">
-      <h3 class="gold" style="font-weight:700; margin-bottom:0.8vh;">학생 ↔ 학생</h3>
+    <div class="card accent-border">
+      <h3 class="accent" style="font-weight:700; margin-bottom:0.8vh;">학생 ↔ 학생</h3>
       <p style="font-size:0.95em;">디지털 도구로 실시간 협력 학습과 동료 피드백을 활성화함</p>
-      <div style="margin-top:1vh; padding:0.7vh 0.9vw; background:rgba(245,200,66,0.1); border-radius:8px; font-size:0.86em; color:#f5c842; font-weight:600;">
+      <div style="margin-top:1vh; padding:0.6vh 0.9vw; background:#fffbeb; border-radius:6px; font-size:0.86em; color:#d97706; font-weight:600;">
         클라우드 협업·온라인 동료 평가
       </div>
     </div>
-    <div class="glass cyan-border">
-      <h3 class="cyan" style="font-weight:700; margin-bottom:0.8vh;">학생 ↔ 도구</h3>
+    <div class="card aux-border">
+      <h3 class="aux" style="font-weight:700; margin-bottom:0.8vh;">학생 ↔ 도구</h3>
       <p style="font-size:0.95em;">AI 튜터와 코스웨어로 개별화된 자기주도 학습을 지원함</p>
-      <div style="margin-top:1vh; padding:0.7vh 0.9vw; background:rgba(93,230,200,0.1); border-radius:8px; font-size:0.86em; color:#5de6c8; font-weight:600;">
+      <div style="margin-top:1vh; padding:0.6vh 0.9vw; background:#ecfeff; border-radius:6px; font-size:0.86em; color:#0891b2; font-weight:600;">
         AI 튜터 질의응답·맞춤 문제 풀이
       </div>
     </div>
@@ -521,21 +498,21 @@ p, li { font-size: clamp(0.95rem, 1.85vw, 1.25rem); line-height: 1.65; }
 
 <!-- SLIDE 8: 필수과제 ③ 인식전환 + 가이드북 5단계 -->
 <section class="slide" id="slide-8" data-sfx="spell-cast" aria-label="슬라이드 8: 필수과제 3 인식전환과 가이드북 5단계">
-  <span class="badge cyan-badge" style="margin-bottom:1.2vh;">필수과제 3</span>
-  <h2 class="glow"><span class="cyan">인식전환</span> — 공동연구·실행·확산</h2>
+  <span class="badge aux-badge" style="margin-bottom:1.2vh;">필수과제 3</span>
+  <h2><span class="aux">인식전환</span> — 공동연구·실행·확산</h2>
   <div class="grid-2" style="max-width:1180px;">
-    <div class="glass cyan-border">
-      <h3 class="cyan" style="font-weight:700; margin-bottom:1vh;">교원학습공동체의 일</h3>
-      <ul class="bullet-list cyan" style="font-size:clamp(0.88rem,1.5vw,1.05rem);">
-        <li>학교별 6~10명 내외 자발적 연구·실천 단위임</li>
+    <div class="card aux-border">
+      <h3 class="aux" style="font-weight:700; margin-bottom:1vh;">교원학습공동체의 일</h3>
+      <ul class="bullet-list aux" style="font-size:clamp(0.88rem,1.5vw,1.05rem);">
+        <li>학교별 6~10명 내외 자발적 연구·실천 단위</li>
         <li>동료 교사 간 수업 공개와 성찰 피드백을 진행함</li>
         <li>학부모 공개수업과 공유회로 우수 사례를 확산함</li>
         <li>도전과 협력의 학습하는 학교 문화를 만듦</li>
       </ul>
     </div>
-    <div class="glass gold-border">
-      <h3 class="gold" style="font-weight:700; margin-bottom:1vh;">수업 실천 가이드북 5단계</h3>
-      <table class="fancy-table" style="font-size:clamp(0.78rem,1.35vw,0.95rem); border-spacing: 0 0.3vh;">
+    <div class="card accent-border">
+      <h3 class="accent" style="font-weight:700; margin-bottom:1vh;">수업 실천 가이드북 5단계</h3>
+      <table class="fancy-table" style="font-size:clamp(0.78rem,1.35vw,0.95rem);">
         <tbody>
           <tr><td style="width:7em;">1단계 수업 고민</td><td>무엇이 중요한가요?</td></tr>
           <tr><td>2단계 수업 설계</td><td>어떻게 설계하고 개발할까요?</td></tr>
@@ -553,27 +530,27 @@ p, li { font-size: clamp(0.95rem, 1.85vw, 1.25rem); line-height: 1.65; }
 
 <!-- SLIDE 9: 필수 참여 + 외부 일정 -->
 <section class="slide" id="slide-9" data-sfx="scroll-unroll" aria-label="슬라이드 9: 필수 참여 사항과 외부 일정">
-  <h2 class="glow">필수 참여 사항과 <span class="gold">외부 일정</span></h2>
+  <h2>필수 참여 사항과 <span class="accent">외부 일정</span></h2>
   <div class="grid-2" style="max-width:1180px; align-items:start;">
-    <div class="glass" style="border-color:rgba(167,139,250,0.4);">
-      <h3 class="purple" style="font-weight:700; margin-bottom:1vh;">필수·권장·제한</h3>
+    <div class="card primary-border">
+      <h3 class="primary" style="font-weight:700; margin-bottom:1vh;">필수·권장·제한</h3>
       <ul class="bullet-list" style="font-size:clamp(0.88rem,1.5vw,1.05rem);">
-        <li>필수 — AI·디지털 리터러시 진단검사(중2, 7월 중, SEN스쿨)임</li>
-        <li>필수 — 선도학교 공유회 2회 참여임</li>
-        <li>필수 — 교육지원청 수업나눔 1회임</li>
-        <li>필수 — 12월 결과보고서 제출임</li>
-        <li>권장 — 맞춤형 학업성취도 자율평가(중1 영어·수학)임</li>
-        <li>제한 — AI 중점학교와 중복 지정 불가임</li>
+        <li>필수 — AI·디지털 리터러시 진단검사(중2, 7월 중, SEN스쿨)</li>
+        <li>필수 — 선도학교 공유회 2회 참여</li>
+        <li>필수 — 교육지원청 수업나눔 1회</li>
+        <li>필수 — 12월 결과보고서 제출</li>
+        <li>권장 — 맞춤형 학업성취도 자율평가(중1 영어·수학)</li>
+        <li>제한 — AI 중점학교와 중복 지정 불가</li>
       </ul>
     </div>
-    <div class="glass gold-border">
-      <h3 class="gold" style="font-weight:700; margin-bottom:1vh;">2026년 외부 일정</h3>
+    <div class="card accent-border">
+      <h3 class="accent" style="font-weight:700; margin-bottom:1vh;">2026년 외부 일정</h3>
       <div class="timeline" style="max-width:none;">
-        <div class="timeline-item visible"><div class="timeline-dot done"></div><span class="timeline-date">4/1~2</span><span class="timeline-title">1차 선도학교 공유회</span><span class="timeline-desc">완료</span></div>
-        <div class="timeline-item visible"><div class="timeline-dot"></div><span class="timeline-date">7월</span><span class="timeline-title">중2 진단검사</span><span class="timeline-desc">SEN스쿨 기반</span></div>
-        <div class="timeline-item visible"><div class="timeline-dot"></div><span class="timeline-date">7/24~25</span><span class="timeline-title">2차 공유회</span><span class="timeline-desc">코엑스마곡 AI디지털러닝페스티벌</span></div>
-        <div class="timeline-item visible"><div class="timeline-dot"></div><span class="timeline-date">10~11월</span><span class="timeline-title">수업나눔</span><span class="timeline-desc">교육지원청 주관</span></div>
-        <div class="timeline-item visible"><div class="timeline-dot"></div><span class="timeline-date">12월</span><span class="timeline-title">결과보고서 제출</span><span class="timeline-desc">최종 보고</span></div>
+        <div class="timeline-item"><div class="timeline-dot done"></div><span class="timeline-date">4/1~2</span><span class="timeline-title">1차 선도학교 공유회</span><span class="timeline-desc">완료</span></div>
+        <div class="timeline-item"><div class="timeline-dot"></div><span class="timeline-date">7월</span><span class="timeline-title">중2 진단검사</span><span class="timeline-desc">SEN스쿨 기반</span></div>
+        <div class="timeline-item"><div class="timeline-dot"></div><span class="timeline-date">7/24~25</span><span class="timeline-title">2차 공유회</span><span class="timeline-desc">코엑스마곡 AI디지털러닝페스티벌</span></div>
+        <div class="timeline-item"><div class="timeline-dot"></div><span class="timeline-date">10~11월</span><span class="timeline-title">수업나눔</span><span class="timeline-desc">교육지원청 주관</span></div>
+        <div class="timeline-item"><div class="timeline-dot"></div><span class="timeline-date">12월</span><span class="timeline-title">결과보고서 제출</span><span class="timeline-desc">최종 보고</span></div>
       </div>
     </div>
   </div>
@@ -581,42 +558,42 @@ p, li { font-size: clamp(0.95rem, 1.85vw, 1.25rem); line-height: 1.65; }
 
 <!-- SLIDE 10: 예산 편성 -->
 <section class="slide" id="slide-10" data-sfx="spell-cast" aria-label="슬라이드 10: 예산 편성 가이드라인">
-  <h2 class="glow">예산 편성 가이드라인 — <span class="gold">총 3,500만 원</span></h2>
+  <h2>예산 편성 가이드라인 — <span class="accent">총 3,500만 원</span></h2>
   <table class="fancy-table" style="max-width:1080px;">
     <thead><tr><th style="width:13em;">항목</th><th style="width:9em;">금액</th><th>주요 용도</th></tr></thead>
     <tbody>
-      <tr><td>교원역량강화비</td><td>400만 원</td><td>교원 연수, 교학공 운영, 컨설팅임</td></tr>
-      <tr><td>교육활동운영비</td><td>2,520만 원</td><td>AI 코스웨어 구독료, 에듀테크 구입, 학생 활동 재료비임</td></tr>
-      <tr><td>환경지원비</td><td>290만 원</td><td>기기 부속품·소모품 구입임</td></tr>
-      <tr><td>사업추진경비</td><td>290만 원</td><td>리더십팀 협의회비, 운영 업무추진비임</td></tr>
+      <tr><td>교원역량강화비</td><td>400만 원</td><td>교원 연수, 교학공 운영, 컨설팅</td></tr>
+      <tr><td>교육활동운영비</td><td>2,520만 원</td><td>AI 코스웨어 구독료, 에듀테크 구입, 학생 활동 재료비</td></tr>
+      <tr><td>환경지원비</td><td>290만 원</td><td>기기 부속품·소모품 구입</td></tr>
+      <tr><td>사업추진경비</td><td>290만 원</td><td>운영팀 협의회비, 사업 운영 업무추진비</td></tr>
     </tbody>
   </table>
   <div class="grid-3" style="margin-top:2vh; max-width:1080px;">
-    <div class="mini-card"><b>필수 편성</b><span>교원역량강화비와 교육활동운영비는 반드시 포함함</span></div>
-    <div class="mini-card"><b>비율 한도</b><span>환경지원비·사업추진경비는 각각 총액의 약 8.5% 이하임</span></div>
-    <div class="mini-card"><b>교학공 운영비</b><span>팀당 80만 원 권장(2팀 합산 160만 원)임</span></div>
+    <div class="mini-card"><b>필수 편성</b><span>교원역량강화비와 교육활동운영비는 반드시 포함</span></div>
+    <div class="mini-card"><b>비율 한도</b><span>환경지원비·사업추진경비는 각각 총액의 약 8.5% 이하</span></div>
+    <div class="mini-card"><b>교학공 운영비</b><span>팀당 80만 원 권장(2팀 합산 160만 원)</span></div>
   </div>
 </section>
 
 <!-- SLIDE 11: 예산 집행 유의사항 -->
 <section class="slide" id="slide-11" data-sfx="spell-cast" aria-label="슬라이드 11: 예산 집행 유의사항">
-  <h2 class="glow">예산 집행 <span class="gold">유의사항</span></h2>
+  <h2>예산 집행 <span class="accent">유의사항</span></h2>
   <div class="grid-2" style="max-width:1180px; align-items:start;">
-    <div class="glass" style="border-color:rgba(167,139,250,0.4);">
-      <h3 class="purple" style="font-weight:700; margin-bottom:1vh;">법령·심의</h3>
+    <div class="card primary-border">
+      <h3 class="primary" style="font-weight:700; margin-bottom:1vh;">법령·심의</h3>
       <ul class="bullet-list" style="font-size:clamp(0.88rem,1.5vw,1.05rem);">
-        <li>50만 원 이상 자산성 물품(노트북·태블릿 등) 구입 불가임</li>
+        <li>50만 원 이상 자산성 물품(노트북·태블릿 등) 구입 불가</li>
         <li>AI 코스웨어·유료 에듀테크는 학운위 심의 후 도입함(초·중등교육법 제29조의2)</li>
         <li>에듀파인으로 투명 회계, 정기 자체 점검을 진행함</li>
       </ul>
     </div>
-    <div class="glass gold-border">
-      <h3 class="gold" style="font-weight:700; margin-bottom:1vh;">집행 제한 항목</h3>
-      <ul class="bullet-list gold" style="font-size:clamp(0.88rem,1.5vw,1.05rem);">
+    <div class="card accent-border">
+      <h3 class="accent" style="font-weight:700; margin-bottom:1vh;">집행 제한 항목</h3>
+      <ul class="bullet-list accent" style="font-size:clamp(0.88rem,1.5vw,1.05rem);">
         <li>외부 위탁 강사가 수업을 대신하는 체험 프로그램은 사업 취지에 부합하지 않음</li>
-        <li>정보 교과 전용 교구(피지컬 컴퓨팅 등)는 AI 중심학교 사업 대상임</li>
-        <li>여비·출장비·숙박비·유류비 지원 불가임</li>
-        <li>개인 자산 취득 물품(개인용 마이크·스피커 세트 등) 구입 불가임</li>
+        <li>정보 교과 전용 교구(피지컬 컴퓨팅 등)는 AI 중심학교 사업 대상</li>
+        <li>여비·출장비·숙박비·유류비 지원 불가</li>
+        <li>개인 자산 취득 물품(개인용 마이크·스피커 세트 등) 구입 불가</li>
         <li>네트워크 공사·방송 장비 등 시설성 항목은 학교 운영비로 처리함</li>
       </ul>
     </div>
@@ -625,7 +602,7 @@ p, li { font-size: clamp(0.95rem, 1.85vw, 1.25rem); line-height: 1.65; }
 
 <!-- SLIDE 12: 신명중 적용과 교학공의 역할 -->
 <section class="slide" id="slide-12" data-sfx="slide-transition" aria-label="슬라이드 12: 신명중 적용과 교학공의 역할">
-  <h2 class="glow">신명중 적용과 <span class="gold">교학공의 역할</span></h2>
+  <h2>신명중 적용과 <span class="accent">교학공의 역할</span></h2>
   <div class="stats" style="grid-template-columns:repeat(4, 1fr); max-width:1100px;">
     <div class="stat"><div class="stat-num">21</div><div class="stat-label">적용 학급<br>(전 학년 + 특수)</div></div>
     <div class="stat"><div class="stat-num">520</div><div class="stat-label">적용 학생 수(명)</div></div>
@@ -633,37 +610,33 @@ p, li { font-size: clamp(0.95rem, 1.85vw, 1.25rem); line-height: 1.65; }
     <div class="stat"><div class="stat-num">8</div><div class="stat-label">적용 교과<br>국어·수학·영어·사회·도덕·기술·진로·특수</div></div>
   </div>
   <div class="hero-row" style="max-width:1180px; margin-top:2vh;">
-    <div class="hero-img-wrap"><img src="images/04-team.png" alt="여러 인물이 마법진 위에 함께 선 일러스트" class="slide-img" style="max-width:300px; max-height:28vh;"></div>
+    <div class="hero-img-wrap"><img src="images/04-team.png" alt="협업하는 교사들의 이미지" class="slide-img" style="max-width:300px; max-height:28vh;"></div>
     <div style="display:flex; flex-direction:column; gap:0.8vh;">
-      <div class="glass gold-border" style="padding:1.2vh 1.4vw;">
-        <div style="color:#f5c842; font-weight:700; font-size:0.92em; margin-bottom:0.3vh;">운영팀 2인</div>
-        <div style="font-size:0.96em;">왕선희(생활상담부장·리드 교사)·김헌용(영어과·교학공 운영)</div>
+      <div class="card accent-border" style="padding:1.2vh 1.4vw;">
+        <div style="color:#d97706; font-weight:700; font-size:0.92em; margin-bottom:0.3vh;">운영팀</div>
+        <div style="font-size:0.96em;">왕선희 · 김헌용</div>
       </div>
-      <div class="glass" style="padding:1.2vh 1.4vw;">
-        <div style="color:#a78bfa; font-weight:700; font-size:0.92em; margin-bottom:0.3vh;">리더십팀 10명</div>
-        <div style="font-size:0.96em;">운영계획서 등재, 공유회·운영 협의 단위임</div>
-      </div>
-      <div class="glass cyan-border" style="padding:1.2vh 1.4vw;">
-        <div style="color:#5de6c8; font-weight:700; font-size:0.92em; margin-bottom:0.3vh;">AI 바이브 교학공 14명</div>
-        <div style="font-size:0.96em;">운영계획서 등재 8명 + 추가 참여 6명임</div>
+      <div class="card aux-border" style="padding:1.2vh 1.4vw;">
+        <div style="color:#0891b2; font-weight:700; font-size:0.92em; margin-bottom:0.3vh;">AI 바이브 교학공 16명</div>
+        <div style="font-size:0.96em;">사업 안의 직접 단위, 결과보고서의 자료 원천</div>
       </div>
     </div>
   </div>
-  <div class="callout gold" style="margin-top:1.6vh; max-width:1060px; text-align:left;">
+  <div class="callout accent" style="margin-top:1.6vh; max-width:1060px; text-align:left;">
     교학공은 <b>필수과제 3</b>의 직접 단위이자, <b>필수과제 1·2</b>의 사례 자료가 만들어지는 자리, 12월 결과보고서의 핵심 근거를 모으는 곳입니다. 수업 공개와 나눔은 교학공 단위 1회 이상이면 충족됩니다.
   </div>
 </section>
 
 <!-- SLIDE 13: 2부 인트로 - 지난 모임 복기 + 오늘 방향 -->
 <section class="slide" id="slide-13" data-sfx="slide-transition" aria-label="슬라이드 13: 지난 모임 복기와 오늘의 방향">
-  <span class="badge cyan-badge" style="margin-bottom:1.6vh;">2부</span>
-  <h2 class="glow"><span class="cyan">AI 행정 업무 자동화 도구</span></h2>
+  <span class="badge aux-badge" style="margin-bottom:1.6vh;">2부</span>
+  <h2><span class="aux">AI 행정 업무 자동화 도구</span></h2>
   <p class="dim" style="text-align:center; max-width:900px; margin-bottom:2vh;">
     지난 모임에서 만든 토대 위에서, 데스크톱 앱만의 영역으로 한 걸음 더 들어갑니다.
   </p>
   <div class="grid-2" style="max-width:1100px;">
-    <div class="glass" style="border-color:rgba(167,139,250,0.35);">
-      <h3 class="purple" style="margin-bottom:1.2vh; font-weight:700;">지난 4월 모임</h3>
+    <div class="card primary-border">
+      <h3 class="primary" style="margin-bottom:1.2vh; font-weight:700;">지난 4월 모임</h3>
       <ul class="bullet-list">
         <li>Claude 데스크톱 앱을 설치함</li>
         <li>GitHub 계정을 만듦</li>
@@ -671,19 +644,19 @@ p, li { font-size: clamp(0.95rem, 1.85vw, 1.25rem); line-height: 1.65; }
         <li>학습지를 미니 게임 앱으로 변환함</li>
       </ul>
       <p class="dim" style="margin-top:1vh; font-size:0.92em;">
-        모두 <span class="purple">웹 화면에서도</span> 가능한 흐름이었습니다.
+        모두 <span class="primary">웹 화면에서도</span> 가능한 흐름이었습니다.
       </p>
     </div>
-    <div class="glass cyan-border">
-      <h3 class="cyan" style="margin-bottom:1.2vh; font-weight:700;">오늘 5월 모임</h3>
-      <ul class="bullet-list cyan">
+    <div class="card aux-border">
+      <h3 class="aux" style="margin-bottom:1.2vh; font-weight:700;">오늘 5월 모임</h3>
+      <ul class="bullet-list aux">
         <li>로컬 폴더를 작업공간으로 지정함</li>
         <li>파일을 직접 읽고 수정·변환함</li>
         <li>운영체제와 외부 도구를 제어함</li>
         <li>대표 데스크톱 앱 두 가지를 실연함</li>
       </ul>
       <p class="dim" style="margin-top:1vh; font-size:0.92em;">
-        <span class="cyan">데스크톱 앱만이 할 수 있는</span> 일에 집중합니다.
+        <span class="aux">데스크톱 앱만이 할 수 있는</span> 일에 집중합니다.
       </p>
     </div>
   </div>
@@ -691,56 +664,56 @@ p, li { font-size: clamp(0.95rem, 1.85vw, 1.25rem); line-height: 1.65; }
 
 <!-- SLIDE 14: 데스크톱 앱의 강점 (간략) -->
 <section class="slide" id="slide-14" data-sfx="spell-cast" aria-label="슬라이드 14: 데스크톱 앱의 강점">
-  <h2 class="glow">데스크톱 앱의 <span class="gold">강점</span></h2>
+  <h2>데스크톱 앱의 <span class="accent">강점</span></h2>
   <p class="dim" style="text-align:center; max-width:880px; margin-bottom:2vh;">
     웹 UI가 닿지 않는 세 가지 영역을 데스크톱 앱이 채웁니다.
   </p>
   <div class="grid-3" style="max-width:1180px;">
-    <div class="glass cyan-border">
-      <h3 class="cyan" style="font-weight:700; margin-bottom:0.8vh;">① 로컬 파일 접근</h3>
+    <div class="card aux-border">
+      <h3 class="aux" style="font-weight:700; margin-bottom:0.8vh;">① 로컬 파일 접근</h3>
       <p style="font-size:0.95em;">업로드 없이 허용한 폴더의 원본 파일을 직접 읽고 씀</p>
-      <div style="margin-top:1vh; padding:0.7vh 0.9vw; background:rgba(93,230,200,0.1); border-radius:8px; font-size:0.86em; color:#5de6c8; font-weight:600;">
+      <div style="margin-top:1vh; padding:0.6vh 0.9vw; background:#ecfeff; border-radius:6px; font-size:0.86em; color:#0891b2; font-weight:600;">
         공문 폴더·업무 자료 그대로
       </div>
     </div>
-    <div class="glass gold-border">
-      <h3 class="gold" style="font-weight:700; margin-bottom:0.8vh;">② 다단계 작업 연결</h3>
+    <div class="card accent-border">
+      <h3 class="accent" style="font-weight:700; margin-bottom:0.8vh;">② 다단계 작업 연결</h3>
       <p style="font-size:0.95em;">읽기 → 변환 → 저장 → 검증을 한 흐름으로 이어 감</p>
-      <div style="margin-top:1vh; padding:0.7vh 0.9vw; background:rgba(245,200,66,0.1); border-radius:8px; font-size:0.86em; color:#f5c842; font-weight:600;">
+      <div style="margin-top:1vh; padding:0.6vh 0.9vw; background:#fffbeb; border-radius:6px; font-size:0.86em; color:#d97706; font-weight:600;">
         반복 업무·산출물 생성
       </div>
     </div>
-    <div class="glass" style="border-color:rgba(167,139,250,0.4);">
-      <h3 class="purple" style="font-weight:700; margin-bottom:0.8vh;">③ 운영체제 제어</h3>
+    <div class="card primary-border">
+      <h3 class="primary" style="font-weight:700; margin-bottom:0.8vh;">③ 운영체제 제어</h3>
       <p style="font-size:0.95em;">파일 정리, 이름 변경, 압축, 외부 도구 호출까지 처리함</p>
-      <div style="margin-top:1vh; padding:0.7vh 0.9vw; background:rgba(167,139,250,0.1); border-radius:8px; font-size:0.86em; color:#a78bfa; font-weight:600;">
+      <div style="margin-top:1vh; padding:0.6vh 0.9vw; background:#eff6ff; border-radius:6px; font-size:0.86em; color:#2563eb; font-weight:600;">
         시스템 작업·도구 연결
       </div>
     </div>
   </div>
   <p class="dim" style="margin-top:1.8vh; text-align:center; max-width:920px;">
-    이 영역을 다룰 수 있는 대표 도구는 <span class="cyan">Claude 데스크톱</span>과 <span class="gold">Codex</span> 두 가지입니다.
+    이 영역을 다룰 수 있는 대표 도구는 <span class="aux">Claude 데스크톱</span>과 <span class="accent">Codex</span> 두 가지입니다.
   </p>
 </section>
 
 <!-- SLIDE 15: Claude Desktop + Cowork -->
 <section class="slide" id="slide-15" data-sfx="spell-cast" aria-label="슬라이드 15: Claude 데스크톱과 Cowork">
-  <span class="badge cyan-badge" style="margin-bottom:1.6vh;">대표 도구 ①</span>
-  <h2 class="glow"><span class="cyan">Claude 데스크톱</span> · <span class="gold">Cowork</span></h2>
+  <span class="badge aux-badge" style="margin-bottom:1.6vh;">대표 도구 ①</span>
+  <h2><span class="aux">Claude 데스크톱</span> · <span class="accent">Cowork</span></h2>
   <div class="hero-row" style="max-width:1180px; align-items:center;">
     <div class="hero-img-wrap">
-      <img src="images/11-claude-desktop.png" alt="Claude 데스크톱 Cowork 화면 스크린샷 자리" class="slide-img" style="max-width:520px; max-height:42vh; background:rgba(26,16,53,0.55); border:1px dashed rgba(93,230,200,0.4);">
+      <img src="images/11-claude-desktop.png" alt="Claude 데스크톱 Cowork 화면 스크린샷 자리" class="slide-img" style="max-width:520px; max-height:42vh; background:#f9fafb; border:1px dashed #cbd5e1;">
     </div>
     <div>
-      <ul class="bullet-list cyan" style="font-size:clamp(0.92rem,1.6vw,1.1rem);">
-        <li>유료 플랜에서 열리는 <b class="gold">Cowork</b> 기능을 사용함</li>
+      <ul class="bullet-list aux" style="font-size:clamp(0.92rem,1.6vw,1.1rem);">
+        <li>유료 플랜에서 열리는 <b class="accent">Cowork</b> 기능을 사용함</li>
         <li>로컬의 특정 폴더를 작업공간으로 지정함</li>
         <li>그 폴더 안의 파일을 함께 보며 작업을 진행함</li>
         <li>파일 작성·수정·정리까지 한 흐름으로 처리함</li>
       </ul>
       <div class="divider" style="margin:1.4vh 0;"></div>
       <p class="dim" style="font-size:clamp(0.9rem,1.5vw,1.05rem);">
-        실제 <span class="cyan">Cowork 창</span>을 띄워, 폴더 지정부터 파일 작업까지 직접 보여드립니다.
+        실제 <span class="aux">Cowork 창</span>을 띄워, 폴더 지정부터 파일 작업까지 직접 보여드립니다.
       </p>
     </div>
   </div>
@@ -748,22 +721,22 @@ p, li { font-size: clamp(0.95rem, 1.85vw, 1.25rem); line-height: 1.65; }
 
 <!-- SLIDE 16: Codex 데스크톱 -->
 <section class="slide" id="slide-16" data-sfx="spell-cast" aria-label="슬라이드 16: Codex 데스크톱">
-  <span class="badge gold-badge" style="margin-bottom:1.6vh;">대표 도구 ②</span>
-  <h2 class="glow"><span class="gold">Codex 데스크톱</span></h2>
+  <span class="badge accent-badge" style="margin-bottom:1.6vh;">대표 도구 ②</span>
+  <h2><span class="accent">Codex 데스크톱</span></h2>
   <div class="hero-row" style="max-width:1180px; align-items:center;">
     <div class="hero-img-wrap">
-      <img src="images/12-codex.png" alt="Codex 데스크톱 작업 화면 스크린샷 자리" class="slide-img" style="max-width:520px; max-height:42vh; background:rgba(40,28,12,0.55); border:1px dashed rgba(245,200,66,0.4);">
+      <img src="images/12-codex.png" alt="Codex 데스크톱 작업 화면 스크린샷 자리" class="slide-img" style="max-width:520px; max-height:42vh; background:#f9fafb; border:1px dashed #cbd5e1;">
     </div>
     <div>
-      <ul class="bullet-list gold" style="font-size:clamp(0.92rem,1.6vw,1.1rem);">
-        <li>OpenAI 계열의 데스크톱 작업 도구임</li>
+      <ul class="bullet-list accent" style="font-size:clamp(0.92rem,1.6vw,1.1rem);">
+        <li>OpenAI 계열의 데스크톱 작업 도구</li>
         <li>같은 방식으로 폴더를 작업공간으로 지정함</li>
-        <li>파일 읽기·수정·명령 실행까지 가능함</li>
-        <li>Claude와 함께 대표적인 두 도구로 자리잡음</li>
+        <li>파일 읽기·수정·명령 실행까지 가능</li>
+        <li>Claude와 함께 대표적인 두 도구</li>
       </ul>
       <div class="divider" style="margin:1.4vh 0;"></div>
       <p class="dim" style="font-size:clamp(0.9rem,1.5vw,1.05rem);">
-        취향 · 업무 성격에 따라 골라 쓰면 되고, <span class="gold">한 도구만 익숙해도 충분</span>합니다.
+        취향·업무 성격에 따라 골라 쓰면 되고, <span class="accent">한 도구만 익숙해도 충분</span>합니다.
       </p>
     </div>
   </div>
@@ -772,33 +745,33 @@ p, li { font-size: clamp(0.95rem, 1.85vw, 1.25rem); line-height: 1.65; }
 <!-- SLIDE 17: Closing -->
 <section class="slide" id="slide-17" data-sfx="fanfare" aria-label="슬라이드 17: 정리와 다음 안내">
   <div class="content-block">
-    <h2 class="glow-gold">오늘의 <span class="gold">정리</span></h2>
+    <h2>오늘의 <span class="accent">정리</span></h2>
     <div class="grid-3" style="max-width:1080px;">
-      <div class="glass" style="border-color:rgba(167,139,250,0.4);">
-        <h3 class="purple" style="font-weight:700; margin-bottom:0.8vh;">사업의 4가지 전환</h3>
+      <div class="card primary-border">
+        <h3 class="primary" style="font-weight:700; margin-bottom:0.8vh;">사업의 4가지 전환</h3>
         <p style="font-size:0.92em;">배움·관계·도구·인식 전환</p>
       </div>
-      <div class="glass gold-border">
-        <h3 class="gold" style="font-weight:700; margin-bottom:0.8vh;">필수과제 세 가지</h3>
+      <div class="card accent-border">
+        <h3 class="accent" style="font-weight:700; margin-bottom:0.8vh;">필수과제 세 가지</h3>
         <p style="font-size:0.92em;">교수·학습·평가 혁신, 깊이 있는 상호작용, 공동연구·실행·확산</p>
       </div>
-      <div class="glass cyan-border">
-        <h3 class="cyan" style="font-weight:700; margin-bottom:0.8vh;">교학공의 역할</h3>
+      <div class="card aux-border">
+        <h3 class="aux" style="font-weight:700; margin-bottom:0.8vh;">교학공의 역할</h3>
         <p style="font-size:0.92em;">필수과제 3의 직접 단위, 12월 결과보고서의 자료 원천</p>
       </div>
     </div>
     <div class="hero-row" style="margin-top:2vh; max-width:1100px; align-items:center;">
-      <div class="hero-img-wrap"><img src="images/10-cert.png" alt="마무리를 상징하는 빛나는 메달 일러스트" class="slide-img" style="max-width:220px; max-height:24vh;"></div>
+      <div class="hero-img-wrap"><img src="images/10-cert.png" alt="마무리를 상징하는 이미지" class="slide-img" style="max-width:220px; max-height:24vh;"></div>
       <div>
-        <h3 class="gold" style="font-size:clamp(1.05rem,1.9vw,1.35rem); text-align:left; font-weight:700; margin-bottom:1vh;">함께 보는 자료</h3>
-        <ul class="bullet-list gold" style="font-size:clamp(0.88rem,1.5vw,1.05rem);">
-          <li>사업 안내 유인물 1부임</li>
-          <li>Gemini Canvas 학습앱 만들기 가이드 PDF임</li>
-          <li>GitHub Pages 배포 가이드 PDF임</li>
+        <h3 class="accent" style="font-size:clamp(1.05rem,1.9vw,1.35rem); text-align:left; font-weight:700; margin-bottom:1vh;">함께 보는 자료</h3>
+        <ul class="bullet-list accent" style="font-size:clamp(0.88rem,1.5vw,1.05rem);">
+          <li>사업 안내 유인물 1부</li>
+          <li>Gemini Canvas 학습앱 만들기 가이드 PDF</li>
+          <li>GitHub Pages 배포 가이드 PDF</li>
         </ul>
         <div class="divider" style="margin:1.4vh 0;"></div>
         <p class="dim" style="font-size:clamp(0.92rem,1.55vw,1.05rem); line-height:1.55;">
-          다음 모임: <b class="gold">6월 22일(월)</b> 에이전트 엔지니어링 심화<br>
+          다음 모임: <b class="accent">6월 22일(월)</b> 에이전트 엔지니어링 심화<br>
           <span class="dim2">신명중학교 AI·디지털 선도학교 운영팀 · 왕선희 · 김헌용</span>
         </p>
       </div>
@@ -839,33 +812,7 @@ const announcer = document.getElementById('announcer');
 const progressBarEl = document.getElementById('progressBar');
 const allSlides = document.querySelectorAll('.slide');
 
-// ===== STAR GENERATION =====
-(function generateStars() {
-  const container = document.getElementById('stars');
-  for (let i = 0; i < 60; i++) {
-    const star = document.createElement('div');
-    star.className = 'star';
-    const size = Math.random() * 3 + 1;
-    star.style.cssText = 'width:' + size + 'px;height:' + size + 'px;left:' + (Math.random()*100) + '%;top:' + (Math.random()*100) + '%;--dur:' + (Math.random()*3+2) + 's;animation-delay:' + (Math.random()*5) + 's;';
-    container.appendChild(star);
-  }
-})();
-
-// ===== MAGIC PARTICLES =====
-(function generateParticles() {
-  const container = document.getElementById('particles');
-  const colors = ['rgba(167,139,250,0.6)', 'rgba(93,230,200,0.5)', 'rgba(245,200,66,0.4)'];
-  for (let i = 0; i < 20; i++) {
-    const p = document.createElement('div');
-    p.className = 'particle';
-    const size = Math.random() * 6 + 2;
-    p.style.cssText = 'width:' + size + 'px;height:' + size + 'px;left:' + (Math.random()*100) + '%;background:' + colors[Math.floor(Math.random()*colors.length)] + ';--dur:' + (Math.random()*8+6) + 's;--delay:' + (Math.random()*10) + 's;';
-    container.appendChild(p);
-  }
-})();
-
 // ===== AUDIO DATA =====
-// SFX와 TTS는 base64로 임베드된 데이터를 사용합니다. 빌드 시 _audio_data.js에서 주입됩니다.
 const SFX = window.__SFX__ || {};
 const TTS = window.__TTS__ || {};
 
@@ -903,7 +850,6 @@ function goTo(index, direction) {
 
   stopCurrentAudio();
 
-  // 이전 슬라이드 내부에 포커스가 남아 있으면 먼저 해제 (aria-hidden + 포커스 경고 방지)
   if (document.activeElement && document.activeElement !== document.body) {
     try { document.activeElement.blur(); } catch (e) {}
   }
@@ -911,7 +857,6 @@ function goTo(index, direction) {
   if (currentSlide >= 0) {
     var oldSlide = allSlides[currentSlide];
     oldSlide.classList.remove('active');
-    // inert를 먼저 걸어 포커스를 안전하게 빼고, 그 다음 aria-hidden
     oldSlide.setAttribute('inert', '');
     oldSlide.setAttribute('aria-hidden', 'true');
   }
@@ -1003,7 +948,6 @@ allSlides.forEach(function(s) {
   s.setAttribute('inert', '');
 });
 
-// URL ?slide=N 으로 진입 위치 지정 가능 (1~TOTAL_SLIDES 범위로 클램프)
 var requestedSlide = Number(new URLSearchParams(window.location.search).get('slide'));
 var startIndex = Number.isFinite(requestedSlide) && requestedSlide >= 1
   ? Math.min(Math.max(Math.floor(requestedSlide), 1), TOTAL_SLIDES) - 1

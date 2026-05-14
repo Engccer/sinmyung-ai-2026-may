@@ -18,3 +18,4 @@ _capture_v3.py
 audio/
 *.bak
 *.tmp
+narration/_gemini_v3_err.log
