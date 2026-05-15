@@ -2,7 +2,7 @@
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>AI 바이브 교학공 5월 회차 — 선도학교 사업 안내와 업무 자동화 도구</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap" rel="stylesheet">
@@ -298,6 +298,72 @@ p, li { font-size: clamp(0.95rem, 1.85vw, 1.25rem); line-height: 1.65; color: #1
   display: flex; justify-content: center; align-items: center;
 }
 .hero-img-wrap img { width: 100%; max-width: 460px; border-radius: 12px; }
+
+/* ===== MOBILE (≤768px) ===== */
+@media (max-width: 768px) {
+  .slide {
+    padding: 7vh 4vw 11vh;
+    justify-content: flex-start;
+    overflow-y: auto;
+    overflow-x: hidden;
+    -webkit-overflow-scrolling: touch;
+  }
+  h1, h2 { padding: 0 2.6em; }
+  h1 { font-size: clamp(1.7rem, 6.5vw, 2.4rem); }
+  h2 { font-size: clamp(1.35rem, 5.2vw, 1.9rem); margin-bottom: 2vh; }
+  h3 { font-size: clamp(1rem, 4.2vw, 1.35rem); }
+  p, li { font-size: clamp(0.92rem, 3.6vw, 1.08rem); line-height: 1.6; }
+
+  .hero-row { grid-template-columns: 1fr; gap: 2vh; }
+  .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; gap: 1.4vh; }
+  .stats { grid-template-columns: 1fr 1fr !important; gap: 2vw; }
+  .key-cards { flex-direction: column; gap: 1.2vh; }
+  .key-card { max-width: 100%; min-width: 0; }
+
+  .card { padding: 2vh 4vw; }
+  .callout { padding: 1.4vh 4vw; max-width: 100%; }
+
+  .slide-img,
+  .slide-img.small {
+    max-width: 88vw !important;
+    max-height: 32vh !important;
+  }
+  .hero-img-wrap img { max-width: 88vw; }
+
+  .fancy-table { font-size: clamp(0.78rem, 2.9vw, 0.92rem); }
+  .fancy-table th, .fancy-table td {
+    padding: 0.8vh 1.6vw;
+    word-break: keep-all;
+  }
+
+  .timeline-date { min-width: 5em; font-size: 0.95em; }
+
+  .audio-toggle { top: 1vh; right: 2vw; font-size: 1rem; padding: 0.35em 0.6em; }
+
+  .nav-bar { padding: 0.6rem 1rem; }
+  .nav-btn {
+    padding: 0.7rem 1rem;
+    font-size: 0.92rem;
+    min-height: 44px;
+  }
+  .nav-counter { font-size: 0.85rem; }
+
+  /* Cover slide: text first, image after, both readable */
+  #slide-1 .hero-row > div:first-child { text-align: center; }
+  #slide-1 h1 { text-align: center !important; }
+}
+
+@media (max-width: 480px) {
+  .slide { padding: 4vh 3vw 11vh; }
+  .stats { grid-template-columns: 1fr 1fr !important; }
+  .card { padding: 1.8vh 3.5vw; }
+}
+
+/* ===== LANDSCAPE PHONES (short height) ===== */
+@media (max-height: 500px) and (max-width: 900px) {
+  .slide { padding: 4vh 4vw 9vh; justify-content: flex-start; overflow-y: auto; }
+  h2 { margin-bottom: 1.2vh; }
+}
 </style>
 </head>
 <body>
@@ -867,6 +933,7 @@ function goTo(index, direction) {
   newSlide.classList.add('active');
   newSlide.setAttribute('aria-hidden', 'false');
   newSlide.removeAttribute('inert');
+  newSlide.scrollTop = 0;
 
   var heading = newSlide.querySelector('h1, h2');
   if (heading) {
@@ -927,6 +994,25 @@ document.addEventListener('keydown', function(e) {
     case 'End': e.preventDefault(); goTo(TOTAL_SLIDES - 1, 'next'); break;
   }
 });
+
+// ===== TOUCH SWIPE NAVIGATION =====
+var touchStartX = 0, touchStartY = 0, touchStartT = 0;
+document.addEventListener('touchstart', function(e) {
+  if (e.touches.length !== 1) return;
+  touchStartX = e.touches[0].clientX;
+  touchStartY = e.touches[0].clientY;
+  touchStartT = Date.now();
+}, { passive: true });
+document.addEventListener('touchend', function(e) {
+  if (e.changedTouches.length !== 1) return;
+  var dx = e.changedTouches[0].clientX - touchStartX;
+  var dy = e.changedTouches[0].clientY - touchStartY;
+  var dt = Date.now() - touchStartT;
+  // Horizontal swipe: ≥60px, mostly horizontal, ≤600ms
+  if (Math.abs(dx) > 60 && Math.abs(dx) > Math.abs(dy) * 1.5 && dt < 600) {
+    if (dx < 0) goNext(); else goPrev();
+  }
+}, { passive: true });
 
 // ===== AUDIO TOGGLE =====
 document.getElementById('audioToggle').addEventListener('click', function() {
